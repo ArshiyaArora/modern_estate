@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js"
+import authRouter from "./routes/auth.route.js";
 dotenv.config();
 
 mongoose
@@ -29,12 +29,12 @@ app.listen(3000, (error) => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 
-app.use((err,req, res,next)=>{
+app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const  message =err.message || 'Internal Server Error'
+  const message = err.message || "Internal Server Error";
   return res.status(statusCode).json({
-    success:false,
+    success: false,
     statusCode, //if variable and key has same name we can omit one
     message,
-  })
+  });
 });
